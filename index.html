@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Daily Chronicle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="page">
+
+    <!-- faux newspaper columns, filled by script.js -->
+    <aside class="side side-left" aria-hidden="true"></aside>
+
+    <main id="paper">
+
+      <header class="masthead">
+        <h1 id="tw-title" aria-label="The Daily Chronicle"></h1>
+        <div class="rule-double" aria-hidden="true"></div>
+        <div class="dateline">
+          <span id="today"></span>
+          <span>Vol. 1, No. 1</span>
+        </div>
+        <div class="rule-single" aria-hidden="true"></div>
+      </header>
+
+      <section class="intro">
+        <p>
+          Edit this paragraph to tell readers what your site is about. Keep it short:
+          two or three sentences set in a tight justified column read like the lead
+          of a front-page story, and the drop cap does the rest of the work.
+        </p>
+      </section>
+
+      <section class="timeline" aria-label="Timeline of events">
+        <div class="rail" aria-hidden="true"><div class="ink"></div></div>
+        <ol id="events"></ol>
+        <p class="end-mark" aria-hidden="true">&mdash; 30 &mdash;</p>
+      </section>
+
+    </main>
+
+    <aside class="side side-right" aria-hidden="true"></aside>
+
+    <!-- coffee stains (purely decorative) -->
+    <div class="stain s1" aria-hidden="true"></div>
+    <div class="stain s2" aria-hidden="true"></div>
+    <div class="stain s3" aria-hidden="true"></div>
+    <div class="stain s4" aria-hidden="true"></div>
+    <div class="stain s5" aria-hidden="true"></div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
