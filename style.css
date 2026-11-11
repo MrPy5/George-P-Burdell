@@ -1,5 +1,5 @@
 /* =========================================================
-   THE DAILY CHRONICLE: newspaper style
+   THE DAILY CHRONICLE: newspaper style (Static Version)
    ========================================================= */
 
 :root {
@@ -167,22 +167,20 @@ body::before {
   line-height: 1.05;
   letter-spacing: .01em;
 }
-#tw-title::after {
-  content: "";
-  display: inline-block;
-  width: .06em; height: .85em;
-  margin-left: .06em;
-  background: var(--ink);
-  vertical-align: -.05em;
-  animation: blink .9s steps(1) infinite;
+
+.masthead-subhead {
+  margin: 6px auto 12px;
+  font-family: 'TTNormsBlack', var(--serif);
+  font-weight: 700;
+  font-size: clamp(20px, 3vw, 104px);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-align: center;
 }
-#tw-title.done::after { animation: none; opacity: 0; }
-@keyframes blink { 50% { opacity: 0; } }
 
 .rule-double, .rule-single {
   margin: 14px auto 0;
-  transform: scaleX(0);
-  transform-origin: center;
+  transform: none;
 }
 .rule-double { height: 6px; border-top: 3px solid var(--ink); border-bottom: 1px solid var(--ink); }
 .rule-single { height: 0; border-top: 1px solid var(--ink); margin-top: 6px; }
@@ -191,11 +189,11 @@ body::before {
   display: flex; justify-content: space-between; gap: 16px;
   margin-top: 8px;
   font-style: italic; font-size: .95rem;
-  opacity: 0;
+  opacity: 1;
 }
 
 /* ---------- intro ---------- */
-.intro { max-width: 62ch; margin: 36px auto 72px; opacity: 0; transform: translateY(8px); }
+.intro { max-width: 90ch; margin: 36px auto 72px; opacity: 1; transform: none; }
 .intro p {
   margin: 0;
   font-size: 1.15rem; line-height: 1.6;
@@ -207,12 +205,6 @@ body::before {
   font-size: 4.2em; line-height: .8;
   padding: 6px 10px 0 0;
 }
-
-/* one orchestrated reveal after the typing finishes */
-.ready .rule-double { transition: transform .9s cubic-bezier(.7,0,.2,1); transform: scaleX(1); }
-.ready .rule-single { transition: transform .9s cubic-bezier(.7,0,.2,1) .25s; transform: scaleX(1); }
-.ready .dateline { transition: opacity .6s ease .7s; opacity: 1; }
-.ready .intro { transition: opacity .8s ease 1s, transform .8s ease 1s; opacity: 1; transform: none; }
 
 /* =========================================================
    TIMELINE
@@ -246,7 +238,6 @@ body::before {
   color: var(--faint);
   font-weight: 700; font-size: 1rem; letter-spacing: .04em;
   white-space: nowrap;
-  transition: color .35s, border-color .35s, transform .35s;
 }
 .stamp.lit { color: var(--stamp); border-color: var(--stamp); transform: translate(-50%, 0) rotate(-4deg) scale(1.08); }
 
@@ -255,26 +246,20 @@ body::before {
   border-top: 4px solid var(--ink);
   border-bottom: 1px solid var(--ink);
   padding: 18px 22px 20px;
-  clip-path: inset(0 0 100% 0);           /* hidden until printed */
-  transition: clip-path 1s cubic-bezier(.6,0,.2,1);
 }
-.event.in article { clip-path: inset(0 0 0 0); }
 .event h3 { margin: 0 0 8px; font-size: 1.45rem; line-height: 1.15; font-weight: 700; }
 .event p { margin: 0; font-size: 1rem; line-height: 1.55; hyphens: auto; -webkit-hyphens: auto; }
 
-/* paperclips on the clippings (a sibling of the article so clip-path doesn't cut it off) */
+/* paperclips on the clippings */
 .paperclip {
   position: absolute; top: -20px; z-index: 3;
   width: 26px; height: 54px;
   background: var(--clip-img) center / contain no-repeat;
   filter: drop-shadow(1px 2px 1px rgba(0,0,0,.35));
-  opacity: 0;
-  transform: translateY(-12px) rotate(var(--r, 8deg));
-  transition: opacity .5s ease .7s, transform .5s ease .7s;
+  opacity: 1;
 }
-.event.in .paperclip { opacity: 1; transform: rotate(var(--r, 8deg)); }
-.event:nth-child(odd)  .paperclip { left: 30px;  --r: 8deg; }
-.event:nth-child(even) .paperclip { right: 30px; --r: -10deg; }
+.event:nth-child(odd)  .paperclip { left: 30px;  transform: rotate(8deg); }
+.event:nth-child(even) .paperclip { right: 30px; transform: rotate(-10deg); }
 
 .end-mark {
   position: relative; z-index: 2;
@@ -301,12 +286,4 @@ body::before {
   .event:nth-child(odd) .paperclip,
   .event:nth-child(even) .paperclip { left: 76px; right: auto; }
   .end-mark { margin-left: 0; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  #tw-title::after { animation: none; }
-  .rule-double, .rule-single { transform: none; }
-  .dateline, .intro { opacity: 1; transform: none; }
-  .event article { clip-path: none; transition: none; }
-  .paperclip { opacity: 1; transform: rotate(var(--r, 8deg)); transition: none; }
 }
