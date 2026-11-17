@@ -6,7 +6,7 @@
   <title>George P. Burdell</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Caveat:wght@600&display=swap" rel="stylesheet">
 <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/ttnorms-black" type="text/css"/>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -24,6 +24,7 @@
         <div class="rule-double" aria-hidden="true"></div>
         <div class="dateline">
           <span id="today"></span>
+          
           <span>Vol. 1, No. 1</span>
         </div>
   
@@ -42,9 +43,21 @@
       <section class="timeline" aria-label="Timeline of events">
         <div class="rail" aria-hidden="true"><div class="ink"></div></div>
         <ol id="events"></ol>
-        <p class="end-mark" aria-hidden="true">&mdash; 30 &mdash;</p>
+        <p class="end-mark" aria-hidden="true">&mdash; ?? &mdash;</p>
       </section>
 
+      <section class="stories" aria-label="Mini-stories">
+        <h2 class="stories-head">Mini-Stories</h2>
+        <div class="rule-single" aria-hidden="true"></div>
+        <div id="story-grid"></div>
+      </section>
+<footer class="paper-foot">
+  <div class="rule-single" aria-hidden="true"></div>
+  <nav class="paper-nav" aria-label="Pages">
+   
+    <a href="sources.html">Sources</a>
+  </nav>
+</footer>
     </main>
 
     <aside class="side side-right" aria-hidden="true"></aside>
@@ -58,6 +71,7 @@
 
   </div>
 
+  <script src="data.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
