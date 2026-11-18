@@ -307,12 +307,14 @@ body::before {
   text-align: center;
 }
 #story-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;   /* centers a short last row */
   gap: 22px;
   margin-top: 28px;
 }
 .story-box {
+  flex: 0 0 calc((100% - 44px) / 3);
   display: flex; align-items: center; justify-content: center; gap: 12px;
   min-height: 110px; padding: 16px;
   font: inherit; text-align: left; color: var(--ink);
@@ -418,12 +420,18 @@ body::before {
 .polaroid {
   position: absolute; z-index: 3;
   width: 400px;
-  padding: 8px 8px 32px;
+  padding: 8px 8px 10px;
   background: #faf8f1;
   box-shadow: 0 6px 12px rgba(0,0,0,.4), 0 1px 2px rgba(0,0,0,.3);
   transform: translate(var(--dx, 0), var(--dy, 0)) rotate(var(--rot, 0deg));
   pointer-events: none;
 }
+.polaroid-cap {
+  min-height: 24px; margin-top: 8px;
+  font-style: italic; font-size: .85rem; line-height: 1.2;
+  text-align: center; color: #2a2616;
+}
+
 .polaroid img {
   display: block; width: 100%;
   background: #bdb8a8;
@@ -454,20 +462,23 @@ body::before {
   .story-box { transition: none; }
 }
 
-@media (max-width: 900px) { #story-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 900px) { .story-box { flex-basis: calc((100% - 22px) / 2); } }
+@media (max-width: 560px) { .story-box { flex-basis: 100%; } }
 
 /* phones: no room beside the note, so photos sit above and below it */
 @media (max-width: 760px) {
   .note-stage { margin: 84px 0; }
   .sticky { max-height: 58vh; padding: 40px 22px 32px; }
   .polaroid { width: 96px; padding: 6px 6px 22px; }
+.polaroid-cap { min-height: 18px; margin-top: 5px; font-size: .7rem; }
   .polaroid::after { width: 12px; height: 12px; margin-left: -6px; }
   .slot-tl { top: -84px;  left: 4px;  right: auto; }
   .slot-tr { top: -84px;  right: 4px; left: auto; }
   .slot-bl { bottom: -84px; left: 4px;  right: auto; }
   .slot-br { bottom: -84px; right: 4px; left: auto; }
 }
-@media (max-width: 560px) { #story-grid { grid-template-columns: 1fr; } }
+@media (max-width: 900px) { .story-box { flex-basis: calc((100% - 22px) / 2); } }
+@media (max-width: 560px) { .story-box { flex-basis: 100%; } }
 /* "Click me" hints on the first timeline button and first story */
 .has-hint { position: relative; }
 .has-hint::after {

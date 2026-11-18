@@ -70,7 +70,7 @@
       if (!bad) slots.push(sl);
     });
     all.forEach(function (sl) { if (slots.indexOf(sl) === -1) slots.push(sl); });
-    list.slice(0, slots.length).forEach(function (src, k) {
+    list.slice(0, slots.length).forEach(function (item, k) {
       var pol = div("polaroid slot-" + slots[k]);
       pol.style.setProperty("--rot", (Math.random() * 20 - 10).toFixed(1) + "deg");
       pol.style.setProperty("--dx", Math.round(Math.random() * 20 - 10) + "px");
@@ -78,8 +78,11 @@
       var img = document.createElement("img");
       img.alt = "";
       img.addEventListener("error", function () { pol.remove(); });
-      img.src = src;
+      img.src = item.src;
+      var cap = div("polaroid-cap");
+      cap.textContent = item.cap || "";
       pol.appendChild(img);
+      pol.appendChild(cap);
       stage.appendChild(pol);
     });
   }
@@ -99,7 +102,9 @@
       body.appendChild(p);
     });
     [].slice.call(stage.querySelectorAll(".polaroid")).forEach(function (el) { el.remove(); });
-    addPolaroids([].concat(n.image || []).filter(Boolean));
+    var imgs = [].concat(n.image || []), caps = [].concat(n.caption || []);
+    addPolaroids(imgs.map(function (src, k) { return { src: src, cap: caps[k] || "" }; })
+                     .filter(function (p) { return p.src; }));
     overlay.hidden = false;
     sticky.scrollTop = 0;
     closeBtn.focus();
@@ -146,7 +151,7 @@
       btn.textContent = "Open note";
       if (i === 0) btn.classList.add("has-hint");
       btn.addEventListener("click", function () {
-        openNote({ kicker: e.date, title: e.head, text: e.note || e.text, image: e.image, color: pickColor(e.color, i) }, btn);
+        openNote({ kicker: e.date, title: e.head, text: e.note || e.text, image: e.image, caption: e.caption, color: pickColor(e.color, i) }, btn);
       });
       art.appendChild(btn);
 
@@ -215,7 +220,7 @@
       box.appendChild(t);
       if (i === 0) box.classList.add("has-hint");
       box.addEventListener("click", function () {
-        openNote({ title: st.title, text: st.text, image: st.image, color: color }, box);
+        openNote({ title: st.title, text: st.text, image: st.image, caption: st.caption, color: color }, box);
       });
       grid.appendChild(box);
     });
